@@ -1,1 +1,8 @@
+name: express gcp stack
+description: This stack sets up a express app and deploys it to GCP.
+branding:
+  icon: cloud
+  color: blue
 
+init:
+ uses: stack-init.yml
