@@ -1,0 +1,28 @@
+name: express setup
+on: [workflow_dispatch]
+jobs:
+  stack-initialization:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v1
+        
+        - name: generate scaffold
+          run: |
+            npx express-generator temp-scaffold
+            cp -r temp-scaffold/* .
+            rm -rf temp-scaffold
+
+        - name: move some folders around
+          run: |
+            mv ./instance-contents/README.md ./README.md
+            rm -r ./instance-contents
+        
+        - name: Commit files
+          run: |
+            git config --global user.name '${{github.actor}}'
+            git config --global user.email '${{github.actor}}@users.noreply.github.com'
+            git add -A
+            git commit -m "Added readme and scaffold."
+            git push
+          
