@@ -26,3 +26,15 @@ jobs:
             git commit -m "Added readme and scaffold."
             git push
           
+        - name: upload artifacts
+          uses: actions/upload-artifact@v2
+          with:
+            name: index
+            path: index.html
+        - run: echo "::set-output name=artifact_name::index"
+       
+  deploy_to_aws:
+    needs: stack-initialization
+    uses: github/kc_test_oidc/.github/workflows/deploy_to_aws.yml@main
+    with:
+      index: ${{needs.build.outputs.artifact_name}}
