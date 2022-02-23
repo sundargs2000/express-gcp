@@ -4,5 +4,16 @@ branding:
   icon: cloud
   color: blue
 
+inputs:
+  - name: workload_identity_provider
+    type: string
+    required: true
+  - name: service_account
+    type: string
+    required: true
+  - name: audience
+    type: string
+    required: true
+  
 init:
  uses: stack-init.yml
