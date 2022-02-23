@@ -26,6 +26,7 @@ jobs:
     uses: raju-dasupally/node-azure-stack/.github/workflows/express_gcp_deploy.yml@main
     with:
       index: ${{needs.build.outputs.artifact_name}}
+      repo_name: 'dummy value'
       
   
   create-readme:
