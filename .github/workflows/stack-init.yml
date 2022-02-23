@@ -1,5 +1,14 @@
 name: express setup
-on: [workflow_dispatch]
+on: 
+  workflow_dispatch:
+   inputs:
+    workload_identity_provider:
+      required: true
+    service_account:
+      required: true
+    audience:
+      required: true
+      
 jobs:
   stack-initialization:
       runs-on: ubuntu-latest
@@ -26,9 +35,10 @@ jobs:
     uses: raju-dasupally/node-azure-stack/.github/workflows/express_gcp_deploy.yml@main
     with:
       index: ${{needs.build.outputs.artifact_name}}
-      repo_name: 'dummy value'
-      
-  
+      workload_identity_provider: ${{github.event.inputs.workload_identity_provider}}
+      service_account: ${{github.event.inputs.service_account}}
+      audience: ${{github.event.inputs.audience}}
+
   create-readme:
     needs: deploy-to-aws
     runs-on: ubuntu-latest
