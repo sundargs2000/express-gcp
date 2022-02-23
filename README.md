@@ -16,14 +16,25 @@ The stack also sets up a CI/CD environment by taing care of the following things
 Note: Once you create a repo out of this stack, you can find your website deployed at TBF.
 
 ## What are the inputs to pass while setting up the stack?
-```
-TBF
-```
+-   `workload_identity_provider`: (Required) The full identifier of the Workload Identity
+    Provider, including the project number, pool name, and provider name. If
+    provided, this must be the full identifier which includes all parts:
 
-## How to get TBF? 🔑
-```
-TBF
-```
-Check [this](TBF) out for more details on getting TBF.
+    ```text
+    projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider
+    ```
 
-**Note**: You will have to create a TBF. This stack will deploy the new repo code to your Azure Web app. Checkout this [Azure Documentation](https://docs.microsoft.com/en-us/azure/app-service/) to learn more about creating Azure App Service
+-   `service_account`: (Required) Email address or unique identifier of the Google Cloud
+    service account for which to generate credentials. For example:
+
+    ```text
+    my-service-account@my-project.iam.gserviceaccount.com
+    ```
+
+-   `audience`: (Required) The value for the audience (`aud`) parameter in the
+    generated GitHub Actions OIDC token. This value defaults to the value of
+    `workload_identity_provider`, which is also the default value Google Cloud
+    expects for the audience parameter on the token. We do not recommend
+    changing this value.
+
+For more info on getting these inputs look at the google [auth action](https://github.com/google-github-actions/auth/blob/main/README.md#inputs) which has in depth details about getting these inputs.
