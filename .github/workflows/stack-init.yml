@@ -44,12 +44,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      
+      - run: git pull
     
       - name: move some folders around
         run: |
           mv ./instance-contents/README.md ./README.md
           rm -r ./instance-contents
           printf '%s\n%s\n' "## Find your app hosted at ${{ needs.deploy-to-aws.outputs.app_url }}" "$(cat README.md)" >README.md
+          
 
       - name: Commit files
         run: |
