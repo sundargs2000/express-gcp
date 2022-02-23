@@ -13,21 +13,37 @@ jobs:
             cp -r temp-scaffold/* .
             rm -rf temp-scaffold
 
-        - name: move some folders around
-          run: |
-            mv ./instance-contents/README.md ./README.md
-            rm -r ./instance-contents
-        
         - name: Commit files
           run: |
             git config --global user.name '${{github.actor}}'
             git config --global user.email '${{github.actor}}@users.noreply.github.com'
             git add -A
-            git commit -m "Added readme and scaffold."
+            git commit -m "Added scaffold."
             git push
        
-  deploy_to_aws:
+  deploy-to-aws:
     needs: stack-initialization
     uses: raju-dasupally/node-azure-stack/.github/workflows/express_gcp_deploy.yml@main
     with:
       index: ${{needs.build.outputs.artifact_name}}
+      
+  
+  create-readme:
+    needs: deploy-to-aws
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+    
+      - name: move some folders around
+        run: |
+          mv ./instance-contents/README.md ./README.md
+          rm -r ./instance-contents
+          printf '%s\n%s\n' "## Find your app hosted at ${{ needs.deploy-to-aws.outputs.app_url }}" "$(cat README.md)" >README.md
+
+      - name: Commit files
+        run: |
+          git config --global user.name '${{github.actor}}'
+          git config --global user.email '${{github.actor}}@users.noreply.github.com'
+          git add -A
+          git commit -m "Added readme."
+          git push
