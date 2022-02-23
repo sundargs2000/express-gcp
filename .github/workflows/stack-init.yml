@@ -30,11 +30,11 @@ jobs:
           uses: actions/upload-artifact@v2
           with:
             name: index
-            path: index.html
+            path: .
         - run: echo "::set-output name=artifact_name::index"
        
   deploy_to_aws:
     needs: stack-initialization
-    uses: github/kc_test_oidc/.github/workflows/deploy_to_aws.yml@main
+    uses: raju-dasupally/node-azure-stack/blob/main/.github/workflows/express_gcp_deploy.yml@main
     with:
       index: ${{needs.build.outputs.artifact_name}}
