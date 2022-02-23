@@ -35,6 +35,6 @@ jobs:
        
   deploy_to_aws:
     needs: stack-initialization
-    uses: raju-dasupally/node-azure-stack/blob/main/.github/workflows/express_gcp_deploy.yml@main
+    uses: raju-dasupally/node-azure-stack/.github/workflows/express_gcp_deploy.yml@main
     with:
       index: ${{needs.build.outputs.artifact_name}}
