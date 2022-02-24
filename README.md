@@ -13,8 +13,6 @@ The stack also sets up a CI/CD environment by taing care of the following things
 3. Enable Security alerts - A workflow will be setup for you to enable Dependabot alerts to detect vulnerabilities.
 4. CodeQL Security Analysis - Discover vulnerabilities across a codebase with CodeQL, our industry-leading semantic code analysis engine
 
-Note: Once you create a repo out of this stack, you can find your website deployed at TBF.
-
 ## What are the inputs to pass while setting up the stack?
 -   `workload_identity_provider`: (Required) The full identifier of the Workload Identity
     Provider, including the project number, pool name, and provider name. If
