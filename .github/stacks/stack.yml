@@ -1,7 +1,7 @@
 name: express gcp stack
 description: This stack sets up a express app and deploys it to GCP.
 branding:
-  icon: cloudddd
+  icon: cloud
   color: blue
 
 inputs:
@@ -25,7 +25,7 @@ configs:
         - App Engine
   
   security:
-    parameters:
+parameters:
       vulnerability-alerts: true
       automated-security-fixes: true
 
