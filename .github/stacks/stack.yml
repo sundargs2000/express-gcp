@@ -20,9 +20,9 @@ configs:
     parameters:
       description: An express app on google app engine.
       topics:
-        - NodeJS
-        - Express
-        - App Engine
+        - nodejs
+        - express
+        - app-engine
   
   security:
     parameters:
