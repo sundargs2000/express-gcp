@@ -34,7 +34,6 @@ jobs:
     needs: stack-initialization
     uses: raju-dasupally/node-azure-stack/.github/workflows/express_gcp_deploy.yml@main
     with:
-      index: ${{needs.build.outputs.artifact_name}}
       workload_identity_provider: ${{github.event.inputs.workload_identity_provider}}
       service_account: ${{github.event.inputs.service_account}}
       audience: ${{github.event.inputs.audience}}
