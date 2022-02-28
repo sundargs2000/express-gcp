@@ -1,7 +1,7 @@
 name: express gcp stack
 description: This stack sets up a express app and deploys it to GCP.
 branding:
-  icon: cloud
+  icon: cloudddd
   color: blue
 
 inputs:
@@ -13,7 +13,7 @@ inputs:
     required: true
   - name: audience
     type: string
-  required: true
+    required: true
 
 configs:
   repo-metadata:
